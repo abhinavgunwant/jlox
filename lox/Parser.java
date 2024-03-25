@@ -4,6 +4,17 @@ import java.util.List;
 
 import static lox.TokenType.*;
 
+/**
+ * Class representing the parser.
+ *
+ * Like the scanner, the parser consumes a flat input sequence, only now we're
+ * reading tokens instead of characters.
+ *
+ * We store the list of tokens and use {@code current} to point to the next
+ * token.
+ *
+ * Each grammar rule is a method inside this class.
+ */
 class Parser {
     private static class ParseError extends RuntimeException {}
 
@@ -92,6 +103,12 @@ class Parser {
         return new ParseError();
     }
 
+    /**
+     * Discard all the tokens until we're at the beginning of a new statement.
+     *
+     * Usually called after catching a {@code ParseError} to bring the parser
+     * "in sync" when an error is identified.
+     */
     private void synchronize() {
         advance();
 
