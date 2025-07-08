@@ -62,12 +62,12 @@ public class GenerateAst {
         for (String type: types) {
             String typeName = type.split(":")[0].trim();
             writer.println(
-                "    R visit" + typeName + baseName + "(" + typeName + " "
+                "        R visit" + typeName + baseName + "(" + typeName + " "
                 + baseName.toLowerCase() + ");"
             );
         }
 
-        writer.println("    }");
+        writer.println("    }\n");
     }
 
     private static void defineType(
@@ -92,10 +92,10 @@ public class GenerateAst {
 
         // Visitor pattern
         writer.println();
-        writer.println("    @Override");
-        writer.println("    <R> R accept(Visitor<R> visitor) {");
+        writer.println("        @Override");
+        writer.println("        <R> R accept(Visitor<R> visitor) {");
         writer.println(
-            "        return visitor.visit" + className + baseName + "(this);"
+            "            return visitor.visit" + className + baseName + "(this);"
         );
         writer.println("        }");
 
@@ -106,7 +106,7 @@ public class GenerateAst {
             writer.println("        final " + field + ";");
         }
 
-        writer.println("    }");
+        writer.println("    }\n");
     }
 }
 
